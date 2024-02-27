@@ -1,0 +1,233 @@
+<html>
+<head>
+<title>ASAM: Boosting Segment Anything Model with Adversarial Tuning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@200&display=swap" rel="stylesheet"> 
+<style type="text/css">
+.content {
+    width:930px;
+    text-align: left;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 200;
+}
+h1 {
+    font-weight: 600;
+}
+table.authors {
+    width:90%;
+    text-align:center;
+}
+table.authors > tr > td, table.authors > tbody > tr > td {
+    width:25%;
+}
+.authors a, .lnk {
+    color:black;
+    text-decoration:underline;
+}
+.authors a:hover, .lnk:hover {
+    color:gray;
+    text-decoration:underline;
+}
+.btn {
+    color:black;
+    text-decoration:none;
+}
+.btn:hover {
+    color:gray;
+    text-decoration:none;
+}
+table.demo1 {
+    width:90%;
+    text-align:center;
+}
+.demo1 img {
+    width:300px;
+}
+td.prompt {
+    width:100%;
+    text-align:center;
+    font-family: monospace;
+    font-size:150%;
+}
+td.prompt a {
+    color:#ddd;
+    text-decoration:none;
+}
+td.prompt a:hover, td.prompt a.active {
+    color:black;
+    text-decoration:none;
+}
+.img-stack {
+    position:relative;
+    display: block;
+    width:300px;
+    height:300px;
+}
+.img-stack img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+}
+.img-stack img.active {
+    z-index: 1;
+}
+.img-stack .overlay {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    transition: opacity .2s;
+    z-index: 2;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: white;
+}
+.carousel {
+    position:relative;
+    width:650px;
+    height:385px;
+    overflow:hidden;
+}
+.carousel > table {
+    position:absolute;
+    top: 0px;
+    transition: left 1s;
+    width:650px;
+}
+.carousel_table td {
+    text-align:center;
+}
+.carousel_table td:nth-child(2) {
+    font-size:150%;
+}
+pre {
+    background-color:#eee;
+    border: 1px solid #999;
+    border-radius: 5px;
+    padding: 10px;
+white-space: break-spaces;
+width:80%;
+text-align:left;
+}
+td.gif {
+    width: 33%;
+    font-family: monospace;
+    font-size: 120%;
+}
+.dl_link {
+    display: inline-block;
+    padding-right: 6px;
+    padding-left: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.dl_link, .dl_link td {
+    color: black;
+    text-decoration: none;
+    font-size: 120%;
+}
+.dl_link, .dl_link table {
+    border-radius: 5px;
+    background-color: none;
+}
+.dl_link:hover, .dl_link:hover * {
+    color: #404040 !important;
+    background-color: #d9d9d9 !important;
+}
+@media only screen and (max-width: 930px) {
+    .content { width:100% !important; }
+}
+</style>
+<script type="text/javascript">
+  var curr_idx = 0;
+  var num_tables = 5;
+  function move(direction) {
+      if (curr_idx == 0 && direction < 0) {
+	  move(num_tables - 1);
+	  return;
+      }
+      if (curr_idx == num_tables - 1 && direction > 0) {
+	  move(-1 * (num_tables - 1));
+	  return;
+      }
+      tables = document.getElementsByClassName("carousel_table");
+      for(var i = 0; i < tables.length; i++) {
+	  tables[i].style.left = (parseInt(tables[i].style.left.substring(0, tables[i].style.left.length - 2)) - direction * 650).toString() + "px";
+      }
+      curr_idx += direction;
+  }
+  function hideOverlay(classname) {
+      document.getElementById(classname + "_overlay").style.opacity = "0";
+  }
+  function activate(classname, idx, max) {
+      document.getElementById(classname + "_overlay").style.opacity = "1";
+      setTimeout(function() {
+	  for(var i = 1; i <= max; i++) {
+	      document.getElementById(classname + "_" + i.toString()).className = "";
+	      document.getElementById(classname + "_text_" + i.toString()).className = "";
+	  }
+	  document.getElementById(classname + "_" + idx.toString()).className = "active";
+	  document.getElementById(classname + "_text_" + idx.toString()).className = "active";
+	  setTimeout(hideOverlay, 200, classname);
+      }, 200);
+  }
+  var moving = true;
+  var stopCounter = 0;
+  function autoMove(currCounter) {
+      if(moving && currCounter >= stopCounter) {
+	  move(1);
+          setTimeout(autoMove, 5000, stopCounter);
+      }
+  }
+  function beginMoving() {
+      moving = true;
+      setTimeout(autoMove, 5000, stopCounter);
+  }
+  function stopMoving() {
+      moving = false;
+      stopCounter++;
+  }
+</script>
+</head>
+<body dir="ltr" onload="beginMoving();">
+<center><div class="content">
+    <center>
+      <h1>ASAM: Boosting Segment Anything Model with Adversarial Tuning</h1>
+      <table class="authors">
+	<tr>
+	  <td><a href="https://scholar.google.com/citations?user=NVzQ87sAAAAJ&hl=zh-CN">Bo Li</a></td>
+	  <td><a href="https://github.com/hkxiao">HaoKe Xiao</a></td>
+	  <td><a href="https://scholar.google.com/citations?user=BSTLuZcAAAAJ&hl=zh-CN">Lv Tang</a></td>
+	</tr>
+      </table><br />
+    </center>
+    <div id="abstract" style="border-top:1px solid gray;">
+    <h2>Abstract</h2>
+    <p>
+     In the evolving landscape of computer vision, foundation models have emerged as pivotal tools, exhibiting exceptional adaptability to a myriad of tasks. Among these, the Segment Anything Model (SAM) by Meta AI has distinguished itself in image segmentation. However, SAM, like its counterparts, encounters limitations in specific niche applications, prompting a quest for enhancement strategies that do not compromise its inherent capabilities. This paper introduces ASAM, a novel methodology that amplifies SAM's performance through adversarial tuning. We harness the potential of natural adversarial examples, inspired by their successful implementation in natural language processing (NLP). By utilizing a stable diffusion model, we augment a subset (1%) of the SA-1B dataset, generating adversarial instances that are more representative of natural variations rather than conventional imperceptible perturbations. Our approach maintains the photorealism of adversarial examples and ensures alignment with original mask annotations, thereby preserving the integrity of the segmentation task. The fine-tuned ASAM demonstrates significant improvements across a diverse range of segmentation tasks without necessitating additional data or architectural modifications. The results of our extensive evaluations confirm that ASAM establishes new benchmarks in segmentation tasks, thereby contributing to the advancement of foundational models in computer vision.
+    </p>
+    </div>
+    <br />
+    <div id="examples" style="border-top:1px solid gray;">
+    <h2>Performance</h2>
+    <center>
+      <img src="images/performance.png" style="width:100%;" /><br /><br />
+    </center>
+    </div>
+    <br />
+    <div id="method" style="border-top:1px solid gray;">
+    <h2>Framework</h2>
+    <center>
+      <img src="images/framework.png" style="width:80%;" />
+    </center><br />
+    </div>
+    <br />
+    <center>
+      <a target="_blank" href="https://github.com/luckybird1994/ASAM" class="dl_link"><table><tr><td verticalalign="middle"><img src="images/github_icon.png" style="width:50px;" /></td><td verticalalign="middle">&nbsp;Code</td></tr></table></a>
+    </center>
+</div></center>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
