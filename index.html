@@ -197,9 +197,35 @@ td.gif {
       <h1>ASAM: Boosting Segment Anything Model with Adversarial Tuning</h1>
       <table class="authors">
 	<tr>
-	  <td><a>coming soon!</a></td> 
+	  <td><a href="https://scholar.google.com/citations?user=NVzQ87sAAAAJ&hl=zh-CN">Bo Li</a></td>
+	  <td><a href="https://scholar.google.com.hk/citations?user=bJmhMKEAAAAJ&hl=zh-CN">HaoKe Xiao</a></td>
+	  <td><a href="https://scholar.google.com/citations?user=BSTLuZcAAAAJ&hl=zh-CN">Lv Tang</a></td>
 	</tr>
       </table><br />
+    </center>
+    <div id="abstract" style="border-top:1px solid gray;">
+    <h2>Abstract</h2>
+    <p>
+     In the evolving landscape of computer vision, foundation models have emerged as pivotal tools, exhibiting exceptional adaptability to a myriad of tasks. Among these, the Segment Anything Model (SAM) by Meta AI has distinguished itself in image segmentation. However, SAM, like its counterparts, encounters limitations in specific niche applications, prompting a quest for enhancement strategies that do not compromise its inherent capabilities. This paper introduces ASAM, a novel methodology that amplifies SAM's performance through adversarial tuning. We harness the potential of natural adversarial examples, inspired by their successful implementation in natural language processing (NLP). By utilizing a stable diffusion model, we augment a subset (1%) of the SA-1B dataset, generating adversarial instances that are more representative of natural variations rather than conventional imperceptible perturbations. Our approach maintains the photorealism of adversarial examples and ensures alignment with original mask annotations, thereby preserving the integrity of the segmentation task. The fine-tuned ASAM demonstrates significant improvements across a diverse range of segmentation tasks without necessitating additional data or architectural modifications. The results of our extensive evaluations confirm that ASAM establishes new benchmarks in segmentation tasks, thereby contributing to the advancement of foundational models in computer vision.
+    </p>
+    </div>
+    <br />
+    <div id="examples" style="border-top:1px solid gray;">
+    <h2>Performance</h2>
+    <center>
+      <img src="images/performance.png" style="width:100%;" /><br /><br />
+    </center>
+    </div>
+    <br />
+    <div id="method" style="border-top:1px solid gray;">
+    <h2>Framework</h2>
+    <center>
+      <img src="images/framework.png" style="width:80%;" />
+    </center><br />
+    </div>
+    <br />
+    <center>
+      <a target="_blank" href="https://github.com/luckybird1994/ASAM" class="dl_link"><table><tr><td verticalalign="middle"><img src="images/github_icon.png" style="width:50px;" /></td><td verticalalign="middle">&nbsp;Code</td></tr></table></a>
     </center>
 </div></center>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
