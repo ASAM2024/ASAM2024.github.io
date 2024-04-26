@@ -198,23 +198,6 @@
   </div>
 </section>
 
-<section class="hero teaser">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <h2 class="title is-3 centered">Partially Annotated Multi-Task Learning Setting</h2>
-    </div>
-    <div class="container is-max-desktop">
-      <img src="static/figs/partially_supervised_setting.png" height="100%" ></img>
-      <h2 class="subtitle has-text">
-      Each training sample contains labels for a subset of the studied tasks, rather than all tasks. 
-      As there is a lack of multi-task labels for each training sample, the partially supervised multi-task learning problem is more challenging compared to the fully supervised multi-task learning problem.
-      </h2>
-      </div>
-    </div>
-  </div>
-</section>
-
   <div class="columns is-centered has-text-centered">
     <h2 class="title is-3 centered">Framework</h2>
   </div>
@@ -222,10 +205,9 @@
 <section class="hero teaser">
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <img src="static/figs/framework.png" height="100%" ></img>
+      <img src="images/framework.png" height="100%" ></img>
       <h2 class="subtitle has-text">
-      <b>Illustration of the proposed DiffusionMTL (Prediction Diffusion).</b> DiffusionMTL first uses an initial backbone model for producing starter prediction maps for all tasks. Then, to denoise the initial prediction maps and generate rectified maps, we propose a Multi-Task Denoising Diffusion Network (MTDNet). MTDNet involves a diffusion process and a denoising process.
-      During training, the initial prediction map of the labeled target task is gradually degraded by applying noise, resulting in the noisy prediction map. Then, we utilize a Multi-Task Conditioned Denoiser (referred to as the “Denoiser”) to denoise iteratively over S steps, resulting in a clean prediction map that is supervised by the ground-truth label. For better learning of unlabeled tasks, we propose a Multi-Task Conditioning mechanism in the denoising process to stimulate information sharing across different tasks. During inference, the diffusion and denoising processes are applied to all tasks to produce denoised multi-task prediction maps.
+      <b>ASAM mainly contains three step</b> .
       </h2>
       </div>
   </div>
